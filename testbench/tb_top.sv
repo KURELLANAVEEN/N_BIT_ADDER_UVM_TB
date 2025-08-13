@@ -8,7 +8,9 @@ import uvm_pkg::*;
 
 module tb_n_bit_adder;
 
-  parameter int N = 4;
+  // Import the parameter N into module scope
+  import adder_tb_pkg::*;
+  
   logic clk, rst_n;
 
   // Clock generation
