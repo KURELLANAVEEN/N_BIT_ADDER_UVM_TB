@@ -39,7 +39,7 @@ class adder_driver extends uvm_driver #(adder_transaction);
       //convert high level xtn into pin activity on DUT via VIF.
       drive_item(txn_h);
 
-      // (Optional) If your txn has a calc_expected(), you could call it here
+      // (Optional) updates the expected fields (sum & carry) inside the transaction object.
       // txn_h.calc_expected();
 
       // Tells to sequencer, that transaction completed send next one.
