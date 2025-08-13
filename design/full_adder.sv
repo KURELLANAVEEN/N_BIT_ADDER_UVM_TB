@@ -11,7 +11,7 @@ module full_adder(
   half_adder HA_1 (.a(a), .b(b), .sum(sum1), .carry(carry1));
 
   logic carry2;
-  half_adder HA_1 (.a(sum1), .b(cin), .sum(sum), .carry(carry2));
+  half_adder HA_2 (.a(sum1), .b(cin), .sum(sum), .carry(carry2));
 
   assign carry = carry1 | carry2;
 
