@@ -15,7 +15,9 @@ module tb_n_bit_adder;
 
   // Clock generation
   initial clk = 0;
-  always #5 clk = ~clk;
+  always begin
+    #5 clk = ~clk;
+  end
 
   // Reset generation
   initial begin
