@@ -14,6 +14,10 @@ class adder_transaction extends uvm_sequence_item;
   bit [N-1:0] sum;
   bit carry;
 
+  bit [N:0] expected_full;
+  bit [N-1:0] expected_sum;
+  bit expected_carry;
+
   // Constraints
   constraint input_valid_range{
     A inside {[0 : (2**N)-1]};
@@ -33,8 +37,11 @@ class adder_transaction extends uvm_sequence_item;
 
   // updates the expected fields (sum & carry) inside the transaction object.
   function void calc_expected();
-    {carry, sum} = a + b;
-    `uvm_info("CALC_EXPECTED", $sformatf("a=%0d b=%0d sum=%0b carry=%0b total=%0d", a, b, sum, carry,{carry, sum}), UVM_MEDIUM)
+    expected_full = a + b;
+    expected_sum  = expected_full[N-1:0];
+    expected_cout = expected_full[N];
+
+    `uvm_info("CALC_EXPECTED", $sformatf("Expected Total = %0d", expected_full), UVM_MEDIUM)
   endfunction
 
 endclass
