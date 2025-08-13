@@ -72,7 +72,7 @@ class adder_driver extends uvm_driver #(adder_transaction);
   task drive_item(adder_transaction txn_h);
     //Wait until the next clocking block event (which is typically something like @(posedge clk) under the hood).
     @(vif.cb);
-    //Assigns the transaction’s values for a and b from tr into the DUT’s inputs.
+    //Assigns the transaction’s values for a and b from txn_h into the DUT’s inputs.
     vif.cb.a <= txn_h.a;
     vif.cb.b <= txn_h.b;
 
