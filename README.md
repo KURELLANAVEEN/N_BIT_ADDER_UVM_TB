@@ -14,7 +14,7 @@ Note:
 Example:
   If you want to verify a 4-bit unsigned adder, set N = 4 in the global_values_pkg package. After that, run the `adder_base_test` testcase in tb_top.sv. Similarly, for an 8-bit unsigned adder, set N = 8 and run the `adder_base_test` testcase.
 
-Below is the link about "nbit adder", you can learn it's working and significance.
+Below is the link about "n-bit adder", you can learn it's working and significance.
   `https://www.tutorialspoint.com/digital-electronics/digital-electronics-n-bit-parallel-adders.htm`
 
 Test Plan:
