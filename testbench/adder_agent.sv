@@ -4,7 +4,7 @@ Agents can be either:
 Active (includes driver, sequencer, monitor)
 Passive (only monitor, no stimulus driving)
 */
-import adder_tb_pkg::*;
+
 class adder_agent extends uvm_agent;
   `uvm_component_utils(adder_agent)
 

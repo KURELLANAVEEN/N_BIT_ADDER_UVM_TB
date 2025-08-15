@@ -5,21 +5,21 @@ Drives the DUT signals via the virtual interface.
 Implements the "active" part of the agent.
 */
 
-import adder_tb_pkg::*;
-
 class adder_driver extends uvm_driver #(adder_transaction);
   `uvm_component_utils(adder_driver)
+  
+  adder_transaction txn_h;
 
   virtual adder_if #(N) vif;
 
   function new(string name = "adder_driver", uvm_component parent = null);
     super.new(name,parent);
-  endfunction : 
+  endfunction : new
 
   function void build_phase(uvm_phase phase);
-    super.build_phase(phase)
+    super.build_phase(phase);
     //Get virtual interface from config DB
-    if(!uvm_config_db#(virtual adder_if#(N))::get(this,"","vif",vif)) begin
+    if (!uvm_config_db#(virtual adder_if#(N))::get(this,"","vif",vif)) begin
       `uvm_fatal(get_type_name(),"Virtual Interface 'vif' nt set in config DB")
     end
   endfunction : build_phase
@@ -27,7 +27,6 @@ class adder_driver extends uvm_driver #(adder_transaction);
   task run_phase(uvm_phase phase);
     super.run_phase(phase); // optional for driver
 
-    adder_transaction txn_h;
     // wait for reset release, so that all TB components start in sync
     wait_for_reset_release();
 
@@ -75,12 +74,14 @@ class adder_driver extends uvm_driver #(adder_transaction);
     //Assigns the transaction’s values for a and b from txn_h into the DUT’s inputs.
     vif.cb.a <= txn_h.a;
     vif.cb.b <= txn_h.b;
-
-    //This is giving the DUT one more clocking block event (one clock cycle, typically) to process the inputs.
+    //First clock cycle: input data + valid=1
+	vif.cb.valid <= 1'b1;     // <--- Assert valid
+ 
+    //This is giving the DUT one more clocking block event (one clock cycle, typically) to process the 		inputs.
     @(vif.cb);
+    //Second clock cycle: data still stable (assuming), but valid deasserted (0), signaling no new data 	this cycle.
+    vif.cb.valid <= 1'b0; 
 
   endtask
-
-
 
 endclass : adder_driver
