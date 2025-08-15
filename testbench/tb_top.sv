@@ -1,16 +1,7 @@
 `timescale 1ns/1ps
 
-import uvm_pkg::*; 
-`include "uvm_macros.svh"
-
-`include "adder_interface.sv"
-`include "adder_tb_pkg.sv"
-
 module tb_n_bit_adder;
 
-  // Import the parameter N into module scope
-  import adder_tb_pkg::*;
-  
   logic clk, rst_n;
 
   // Clock generation
@@ -27,7 +18,7 @@ module tb_n_bit_adder;
   end
 
   // Interface instantiation
-  adder_if adder_vif #(.N(N)) (.clk(clk), .rst_n(rst_n));
+  adder_if #(.N(N)) adder_vif (.clk(clk), .rst_n(rst_n));
 
   // DUT instantiation
   n_bit_adder #(.N(N)) DUT (.A(adder_vif.a), 
@@ -40,10 +31,9 @@ module tb_n_bit_adder;
   	$dumpvars(0, tb_n_bit_adder);
 
     // Connect interface to UVM
-    uvm_config_db#(virual adder_vif)::set(null, "*", "vif", adder_vif);
+    uvm_config_db#(virtual adder_if#(N))::set(null, "*", "vif", adder_vif);
 
     $display("Starting UVM TestBench....");
-    run_test("testcase_1");
+    run_test("adder_base_test");
   end
-
 endmodule : tb_n_bit_adder
