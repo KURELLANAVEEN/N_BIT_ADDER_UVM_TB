@@ -2,10 +2,6 @@
 Defines fields like A, B, expected outputs, etc.
 Can have constraints for randomization */
 
-`ifndef ADDER_TXN
-`define ADDER_TXN
-
-import adder_tb_pkg::*;
 
 class adder_transaction extends uvm_sequence_item;
   // DUT input & output stimulus fields
@@ -20,8 +16,8 @@ class adder_transaction extends uvm_sequence_item;
 
   // Constraints
   constraint input_valid_range{
-    A inside {[0 : (2**N)-1]};
-    B inside {[0 : (2**N)-1]};
+    a inside {[0 : (2**N)-1]};
+    b inside {[0 : (2**N)-1]};
   }
 
   `uvm_object_utils_begin(adder_transaction)
@@ -39,11 +35,9 @@ class adder_transaction extends uvm_sequence_item;
   function void calc_expected();
     expected_full = a + b;
     expected_sum  = expected_full[N-1:0];
-    expected_cout = expected_full[N];
+    expected_carry = expected_full[N];
 
     `uvm_info("CALC_EXPECTED", $sformatf("Expected Total = %0d", expected_full), UVM_MEDIUM)
   endfunction
 
 endclass
-
-`endif
