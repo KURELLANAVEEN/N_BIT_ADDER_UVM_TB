@@ -26,4 +26,4 @@ EDA Playground with code( Simulator: Synposis VCS):
 Contributions and feedback are welcome to improve the codebase.
 
 Thanks,
-Naveen Kurella
+Naveen Kurella.
