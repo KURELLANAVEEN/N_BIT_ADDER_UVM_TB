@@ -23,7 +23,7 @@ Below is the link about "n-bit adder", you can learn it's working and significan
 Test Plan:
  `https://docs.google.com/spreadsheets/d/1YLPBp1tqOkAq4grNwCso51ZPu4MF6TwBrHce0I7QKQM/edit?usp=sharing`
 
-EDA Playground with code( Simulator: Synposis VCS):
+EDA Playground with code( Simulator: Synopsys VCS):
   `https://edaplayground.com/x/jJY_`
 
 Thanks,
