@@ -4,7 +4,7 @@ Hi,
 
 This repo is all about UVM Test Bench for verifying `n-bit adder`.
 
-This project is for complete beginners who want to understand the flow of a UVM testbench. In each testbench file, I have added comments for important lines. The main goal is to understand how communication happens between UVM components so that you can verify the actual design.
+This project is for complete beginners who want to understand the flow of a UVM testbench. In each testbench file, I have added comments for important lines. The main goal is to understand how communication/flow happens between UVM components so that we can verify the actual design.
 
 Note:
   1.This design is an N-bit adder, as the name suggests, capable of handling multiple bit-widths through the parameter N. The adder supports only unsigned numbers. Our UVM testbench is also written to verify the design for different bit-widths by varying this parameter.
