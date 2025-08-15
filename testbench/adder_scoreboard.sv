@@ -2,8 +2,6 @@
 The scoreboard's duty is to compare observed transactions from the monitor against expected values or a reference model to validate correct DUT behavior.
 */
 
-import adder_tb_pkg::*;
-
 class adder_scoreboard extends uvm_component;
   `uvm_component_utils(adder_scoreboard)
 
@@ -48,7 +46,7 @@ class adder_scoreboard extends uvm_component;
     else begin
       pass_count++;
       `uvm_info(get_type_name(),
-        $sformatf("Match #%0d: A=%0d B=%0d SUM=%0b COUT=%0b TOTAL=%0d",total_count, tr.a, tr.b, tr.sum, tr.carry, {tr.carry, tr.sum}), UVM_MEDIUM);
+                $sformatf("Match #%0d: A=%0d B=%0d SUM=%0b COUT=%0b Observed Total=%0d",total_count, tr.a, tr.b, tr.sum, tr.carry, {tr.carry, tr.sum}), UVM_MEDIUM);
     end 
 
   endfunction : write
@@ -56,15 +54,15 @@ class adder_scoreboard extends uvm_component;
   // Summary at report phase (or end_of_simulation)
   function void report_phase(uvm_phase phase);
     super.report_phase(phase);
-    `uvm_info(get_type_name(),
-      $sformatf("Scoreboard summary: total=%0d pass=%0d fail=%0d",
-                total_count, pass_count, fail_count),
-      UVM_LOW);
 
-    // optional: fail the test if any mismatches were seen
+    // Fail the test if any mismatches were seen
     if (fail_count > 0) begin
       `uvm_error(get_type_name(),
-        $sformatf("Scoreboard detected %0d mismatches", fail_count));
+                 $sformatf("***[FAIL]*** Scoreboard detected %0d mismatches", fail_count));
+    end
+    else begin
+      `uvm_info(get_type_name(), $sformatf("***[PASS]*** Scoreboard summary: Total Stimulus Input=%0d Pass=%0d Fail=%0d",
+            total_count, pass_count, fail_count), UVM_LOW);
     end
   endfunction : report_phase
 
