@@ -1,8 +1,13 @@
 # N_BIT_ADDER_UVM_TB
 Hi,
-This repo is all about UVM Test Bench for verifying `n - bit adder`.
-Below is the link about "n-bit adder", you can learn it's working and significance.
 
-* There is a design and testbench folder. RTL code is in design folder and UVM TB code is in testbench folder. You can use EDA playground for simulation.
+This repo is all about UVM Test Bench for verifying `n-bit adder`.
+Below is the link about "nbit adder", you can learn it's working and significance.
+  `https://www.tutorialspoint.com/digital-electronics/digital-electronics-n-bit-parallel-adders.htm`
 
-BTW, below is link of EDA playground with all code available.
+Test Plan:
+ `https://docs.google.com/spreadsheets/d/1YLPBp1tqOkAq4grNwCso51ZPu4MF6TwBrHce0I7QKQM/edit?usp=sharing`
+
+
+EDA Playground with code( Simulator: Synposis VCS): 
+  `https://edaplayground.com/x/jJY_`
